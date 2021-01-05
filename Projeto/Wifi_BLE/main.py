@@ -38,19 +38,19 @@ def sub_cb(topic, msg):
     print(msg)
     if (msg == b"OFF"):
         pycom.rgbled(0x000000) # OFF
-
+        MQTT_C.publish(MQTT_Topic6,str(0))
     if (msg == b"ON"):
         pycom.rgbled(0x00FF00) # Green
-
+        MQTT_C.publish(MQTT_Topic6,str(1))
     if (msg == b"TEMP"):
         print("10-MPL3115A2 temperature: " + str(mp.temperature()))
 
     if (msg == b"0"):
-        pycom.rgbled(0xFF0000) # RED
-
+        # pycom.rgbled(0xFF0000) # RED
+        i=0
     if (msg == b"1"):
-        pycom.rgbled(0x00FF00) # Green
-
+        # pycom.rgbled(0x00FF00) # Green
+        i=1
 #******************************************************************************
 #
 #                  CONFIG NETWORK
@@ -79,7 +79,7 @@ MQTT_Server = "io.adafruit.com"                    # Broker
 MQTT_Port = 1883                                     # Porta de acesso
 MQTT_Client_ID = '01e8e120-19e0-11eb-a2e4-b32ea624e442'  # Identificação do cliente
 MQTT_USER = "Rs_Drumond_Paulo"                                # Nome do Topico
-MQTT_PASSWORD="aio_MSLU39f9KppE5HFApDtagu9IyCJX"
+MQTT_PASSWORD="aio_tCmY85nICbjpzmpP46JsOYWt9pG9"
 MQTT_Topic1 = "Rs_Drumond_Paulo/feeds/temp-sala"
 MQTT_Topic2 = "Rs_Drumond_Paulo/feeds/sala-on-of"
 # MQTT_Topic3 = "Rs_Drumond_Paulo/feeds/RESET"
@@ -159,7 +159,7 @@ def char1_cb(chr,xx):
 
 char1_cb=chr1.callback(trigger=Bluetooth.CHAR_WRITE_EVENT, handler=char1_cb,arg=chr1)
 
-
+i=0
 # Main Program
 while True:
     if p_in_Button()== 0:
@@ -171,6 +171,7 @@ while True:
         time.sleep_ms(200)
         # MQTT_C.publish(MQTT_Topic5,"Altitude: " + str(mp.altitude()))
         # time.sleep_ms(200)
-        MQTT_C.publish(MQTT_Topic6,str(1))
-        time.sleep_ms(200)
+        # MQTT_C.publish(MQTT_Topic6,str(i))
+        # time.sleep_ms(200)
+        i=0;
     MQTT_C.check_msg()
