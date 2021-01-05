@@ -1,0 +1,24 @@
+adafruit.io
+.
+.
+http API
+
+
+
+
+
+
+gets e posts
+
+curl - leva os dados que necesita passar
+
+
+# Send new data with a value of 42
+$ curl -F 'value=60' -H "X-AIO-Key: aio_EFLS39OMCN4twYY8gvt4SY6qG9mQ" https://io.adafruit.com/api/v2/2181665/feeds/temp3/data
+
+
+curl -F 'value=50' https://a7fdcb4b823f3a299992222f2e7548e8.m.pipedream.net
+
+
+
+curl -X POST --data '{"dev_id:"lopyed10", "payload_raw": "AQE="}' "downlink_url": "https://integrations.thethingsnetwork.org/ttn-eu/api/v2/down/redeslopyed/http_18_12_2020?key=ttn-account-v2.YVMCcAWKsFDzX14kUwBbUcpQDcozJlpYnfy-Udvp94M"
